@@ -1,7 +1,7 @@
 [project]
-name = "cactus-needle"
-version = "3.2.1"
-description = "A 14MB foundation tool-calling model for tiny devices: inference, LoRA finetuning, and build."
+name = "cactus-compute"
+version = "4.0.0"
+description = "30mb voice, vision and agentic AI for consumer devices."
 requires-python = ">=3.9"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -10,6 +10,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+vision = ["Pillow>=10"]
 train = [
   "numpy",
   "jax",
@@ -33,15 +34,20 @@ test = ["pytest", "pydantic"]
 # mlx-cpu (the CPU backend Linux needs) is gated to Linux by mlx itself; macOS gets mlx + Metal.
 mlx = ["mlx[cpu]"]
 
+[project.urls]
+Homepage = "https://cactuscompute.com"
+Repository = "https://github.com/cactus-compute/cactus"
+"Bug Tracker" = "https://github.com/cactus-compute/cactus/issues"
+
 [project.scripts]
-needle = "needle.cli:main"
+cactus = "cactus.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["needle*"]
+include = ["cactus*"]
 
 [tool.setuptools.package-data]
-"needle.model" = ["*.model", "*.vocab"]
-"needle.playground" = ["index.html", "app.js", "style.css"]
+"cactus.model" = ["*.model", "*.vocab"]
+"cactus.playground" = ["index.html", "app.js", "style.css"]
 
 [build-system]
 requires = ["setuptools>=68.0"]
